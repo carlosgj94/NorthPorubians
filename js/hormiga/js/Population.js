@@ -43,6 +43,7 @@ class Population {
         var sorteable = [];
         for(var ant in this.ants){
             var distP = dist(this.ants[ant].pos.x, this.ants[ant].pos.y, finalX, finalY);
+            console.log(distP);
             sorteable.push([ant, distP]);
         }
         return sorteable.sort(function (a, b){

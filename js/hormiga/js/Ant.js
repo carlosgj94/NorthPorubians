@@ -3,7 +3,7 @@ class Ant{
         this.pos = createVector(width/2, height);
         this.vel = createVector();
         this.acc = createVector();
-        this.c = color("white");
+        this.c = color("magenta");
         this.generation = 0;
 
         if(dna === undefined)

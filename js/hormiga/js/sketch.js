@@ -1,5 +1,5 @@
 var population;
-var lifespan =  200;
+var lifespan =  300;
 var finalX;
 var finalY;
 var Isdraw = true;
@@ -18,7 +18,7 @@ function setup() {
     createCanvas(width, height);
 
     finalX = width / 2;
-    finalY = height / 2;
+    finalY = 30;
 
     population = new Population();
 }
