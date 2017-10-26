@@ -5,6 +5,7 @@ class Population {
         this.survivor = this.popsize*0.08;
         this.count;
         this.winners = [];
+        this.popProb = 0.3; //Probability to survive
 
         for(var i=0; i < this.popsize; i++){
             this.ants[i]  = new Ant();
@@ -27,8 +28,13 @@ class Population {
         var i = 0;
 
         for(i; i < this.survivor && i<this.popsize; i++){
-            antsNew[i] = new Ant(this.ants[sortArr[i][0]].dna);
-            antsNew[i].reboot();
+            if(random() < this.popProb){
+                antsNew[i] = new Ant(this.ants[sortArr[i][0]].dna);
+                antsNew[i].reboot();
+                //TODO
+                //Send nude 2 (propios)
+                //Send pornografy
+            }
         }
         //The loosers DIEEEEEEEEEEE
         for(i; i<this.popsize; i++){
@@ -43,7 +49,6 @@ class Population {
         var sorteable = [];
         for(var ant in this.ants){
             var distP = dist(this.ants[ant].pos.x, this.ants[ant].pos.y, finalX, finalY);
-            console.log(distP);
             sorteable.push([ant, distP]);
         }
         return sorteable.sort(function (a, b){
