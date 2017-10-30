@@ -27,12 +27,8 @@ function draw() {
     if (Isdraw) {
         background('rgba(0,0,0,0.1)');
         //console.log(population.count);
-        if (population.count == lifespan) {
+        if (population.count == lifespan) 
             population.reboot();
-            /*vueltas++
-            if(vueltas==3)
-                setOwnDraw()*/
-        }
 
         population.run();
         var c = color("red");  // Define color 'c'
@@ -40,11 +36,4 @@ function draw() {
         noStroke();
         ellipse(finalX, finalY, 30, 30);
     }
-}
-
-function setOwnDraw(){
-    if(Isdraw)
-        Isdraw = false
-    else
-        Isdraw = true
 }

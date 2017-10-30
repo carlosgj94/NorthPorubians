@@ -2,10 +2,10 @@ class Population {
     constructor(){
         this.ants = [];
         this.popsize = 100;
-        this.survivor = this.popsize*0.08;
         this.count;
         this.winners = [];
         this.popProb = 0.3; //Probability to survive
+        this.popSurvive = 0.5; //Per cent of ants that survive 
 
         for(var i=0; i < this.popsize; i++){
             this.ants[i]  = new Ant();
@@ -14,7 +14,6 @@ class Population {
 
     run(){
         this.count = this.ants[0].count;
-        if(this.count == 400) console.log(this.count);
         for(var i=0; i < this.popsize; i++){
             this.ants[i].update();
             this.ants[i].show();
@@ -25,17 +24,27 @@ class Population {
         var sortArr = this._orderAnts();
         //The 50 best get a new life YAY for you Champions
         var antsNew = []
+        var antsPicked = 0;
         var i = 0;
 
-        for(i; i < this.survivor && i<this.popsize; i++){
+        while(antsPicked < (this.popSurvive * this.popsize)){
+            //While we havent pick enough ants
+
+            if(i>this.popsize) i=0; //Start the ant index to 0 again
+
             if(random() < this.popProb){
-                antsNew[i] = new Ant(this.ants[sortArr[i][0]].dna);
-                antsNew[i].reboot();
-                //TODO
-                //Send nude 2 (propios)
-                //Send pornografy
+                //we select the next virgin ant
+                while(this.ants[sortArr[i][0]] == undefined && i<this.popsize) i++; 
+                //Ant, you have been selected to survive. Congratulations.
+                antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
+                antsNew[antsPicked].reboot();
+                this.ants[sortArr[i][0]] = undefined;//this ant has already fucked
+                i=0; //Start the search again from 0
+                antsPicked++;//One more ant picked
             }
+            i++;
         }
+        i = this.popsize * this.popSurvive;
         //The loosers DIEEEEEEEEEEE
         for(i; i<this.popsize; i++){
             antsNew[i] = new Ant();
