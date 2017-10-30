@@ -18,7 +18,7 @@ function setup() {
     createCanvas(width, height);
 
     finalX = width / 2;
-    finalY = 30;
+    finalY = 150;
 
     population = new Population();
 }

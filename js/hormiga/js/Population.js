@@ -27,6 +27,13 @@ class Population {
         var antsPicked = 0;
         var i = 0;
 
+        //Print the ant winner
+        console.log('-----------');
+        console.log(sortArr[0][0]);
+        console.log(sortArr[1][0]);
+        console.log(sortArr[2][0]);
+        console.log(sortArr[3][0]);
+
         while(antsPicked < (this.popSurvive * this.popsize)){
             //While we havent pick enough ants
 
@@ -36,6 +43,9 @@ class Population {
                 //we select the next virgin ant
                 while(this.ants[sortArr[i][0]] == undefined && i<this.popsize) i++; 
                 //Ant, you have been selected to survive. Congratulations.
+                if(antsPicked == 0){
+                    console.log('La ganadora es: ' +  sortArr[i][0]);
+                }
                 antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
                 antsNew[antsPicked].reboot();
                 this.ants[sortArr[i][0]] = undefined;//this ant has already fucked
