@@ -4,7 +4,7 @@ class Population {
         this.popsize = 100;
         this.count;
         this.winners = [];
-        this.popProb = 0.3; //Probability to survive
+        this.popProb = 0.7; //Probability to survive
         this.popSurvive = 0.5; //Per cent of ants that survive 
 
         for(var i=0; i < this.popsize; i++){
@@ -21,47 +21,35 @@ class Population {
     }
 
     reboot(){
-        var sortArr = this._orderAnts();
-        //The 50 best get a new life YAY for you Champions
-        var antsNew = []
-        var antsPicked = 0;
-        var i = 0;
+        var sortArr = this._orderAnts(); // Returns an array with: id, quality
+        sortArr = this._addTotalQuality(sortArr); //Adds the total quality of each ant
+        var antsNew = []; //The future ants
 
-        //Print the ant winner
-        console.log('-----------');
-        console.log(sortArr[0][0]);
-        console.log(sortArr[1][0]);
-        console.log(sortArr[2][0]);
-        console.log(sortArr[3][0]);
+        //antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
+        //antsNew[antsPicked].reboot();
 
-        while(antsPicked < (this.popSurvive * this.popsize)){
-            //While we havent pick enough ants
-
-            if(i>this.popsize) i=0; //Start the ant index to 0 again
-
-            if(random() < this.popProb){
-                //we select the next virgin ant
-                while(this.ants[sortArr[i][0]] == undefined && i<this.popsize) i++; 
-                //Ant, you have been selected to survive. Congratulations.
-                if(antsPicked == 0){
-                    console.log('La ganadora es: ' +  sortArr[i][0]);
+        for(i in this.popsize){
+            var rand = random();
+            for(j in this.popsize){
+                if(rand < sortArr[j][2]){
+                    //Ant selected
+                    antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
+                    antsNew[antsPicked].reboot();
                 }
-                antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
-                antsNew[antsPicked].reboot();
-                this.ants[sortArr[i][0]] = undefined;//this ant has already fucked
-                i=0; //Start the search again from 0
-                antsPicked++;//One more ant picked
-            }
-            i++;
-        }
-        i = this.popsize * this.popSurvive;
-        //The loosers DIEEEEEEEEEEE
-        for(i; i<this.popsize; i++){
-            antsNew[i] = new Ant();
+            } 
         }
 
         this.ants = antsNew;
+        //Mix every two
+        //Mutate randomly
+    }
 
+    _getQuality(sortArr) {
+        var sum = 0;
+        for(index in sortArr){
+            sum += sortArr[index][1]; 
+        }
+        return sum;
     }
 
     _orderAnts(){
@@ -73,6 +61,16 @@ class Population {
         return sorteable.sort(function (a, b){
             return a[1] - b[1];
         });
+    }
+
+    _addTotalQuality(sortArr){
+        var _Quality = _getQuality(sortArr);
+        sortArr[this.popsize-1][2] = sortArr[this.popsize][1]/_Quality;
+        for(var i = this.popsize-2; i>=0; i--){
+            var quality = (sortArr[i][1]/_Quality) + sortArr[i+1][2];
+            sortArr[i][2] = quality;
+        }
+        return sortArr;
     }
 
 }
