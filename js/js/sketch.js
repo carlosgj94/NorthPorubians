@@ -1,5 +1,5 @@
 var population;
-var lifespan =  300;
+var lifespan =  100;
 var finalX;
 var finalY;
 var Isdraw = true;

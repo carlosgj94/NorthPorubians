@@ -6,7 +6,7 @@ class DNA {
         if(oldGenes === undefined)
             for(var i =0; i < lifespan; i++){
                 this.genes[i] = p5.Vector.random2D();
-                this.genes[i].setMag(0.2);
+                this.genes[i].setMag(0.6);
             }
         else
             for(var i =0; i < lifespan; i++){
