@@ -39,10 +39,7 @@ class Population {
         }
 
         this.ants = antsNew;
-        //MIXMIXMIXMIXMIX
         //Mix every two
-        //MIXMIXMIX
-        //Mutate 
         this.mutate();
     }
     
@@ -57,6 +54,7 @@ class Population {
         for(var index in sortArr){
             sum += sortArr[index][1]; 
         }
+        console.log(sum);
         return sum;
     }
 
@@ -64,7 +62,7 @@ class Population {
         var sorteable = [];
         for(var ant in this.ants){
             var distP = dist(this.ants[ant].pos.x, this.ants[ant].pos.y, finalX, finalY);
-            sorteable.push([ant, distP]);
+            sorteable.push([ant, 1/distP]);
         }
         return sorteable.sort(function (a, b){
             return a[1] - b[1];
@@ -73,11 +71,12 @@ class Population {
 
     _addTotalQuality(sortArr){
         var _Quality = this._getQuality(sortArr);
-        sortArr[this.popsize-1][2] = sortArr[this.popsize-1][1]/_Quality;
+        sortArr[this.popsize-1][2] = (sortArr[this.popsize-1][1]/_Quality);
         for(var i = this.popsize-2; i>=0; i--){
             var quality = (sortArr[i][1]/_Quality) + sortArr[i+1][2];
             sortArr[i][2] = quality;
         }
+        console.log(sortArr);
         return sortArr;
     }
 }

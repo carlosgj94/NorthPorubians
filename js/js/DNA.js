@@ -2,7 +2,7 @@ class DNA {
     constructor(){
         this.genes = [];
         this.len = 100;
-        this.mutProb = 0.3;
+        this.mutProb = 1;
 
         for(var i =0; i < lifespan; i++){
             this.genes[i] = p5.Vector.random2D();
