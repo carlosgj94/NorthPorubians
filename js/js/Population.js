@@ -27,14 +27,20 @@ class Population {
 
         //antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
         //antsNew[antsPicked].reboot();
+        
+        console.log(sortArr[0]);
 
-        for(i in this.popsize){
+        for(var i=0; i < this.popsize; i++){
             var rand = random();
-            for(j in this.popsize){
+            console.log();
+            for(var j=this.popsize-1; j>=0; j--){
                 if(rand < sortArr[j][2]){
                     //Ant selected
-                    antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
-                    antsNew[antsPicked].reboot();
+                    antsNew[i] = new Ant(this.ants[sortArr[j][0]].dna);
+                    antsNew[i].reboot();
+                    //Finish the for loop
+                    console.log(j);
+                    j = 0;
                 }
             } 
         }
@@ -46,7 +52,7 @@ class Population {
 
     _getQuality(sortArr) {
         var sum = 0;
-        for(index in sortArr){
+        for(var index in sortArr){
             sum += sortArr[index][1]; 
         }
         return sum;
@@ -64,13 +70,12 @@ class Population {
     }
 
     _addTotalQuality(sortArr){
-        var _Quality = _getQuality(sortArr);
-        sortArr[this.popsize-1][2] = sortArr[this.popsize][1]/_Quality;
+        var _Quality = this._getQuality(sortArr);
+        sortArr[this.popsize-1][2] = sortArr[this.popsize-1][1]/_Quality;
         for(var i = this.popsize-2; i>=0; i--){
             var quality = (sortArr[i][1]/_Quality) + sortArr[i+1][2];
             sortArr[i][2] = quality;
         }
         return sortArr;
     }
-
 }
