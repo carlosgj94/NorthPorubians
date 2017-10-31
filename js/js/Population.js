@@ -75,7 +75,6 @@ class Population {
             var quality = (sortArr[i][1]/_Quality) + sortArr[i+1][2];
             sortArr[i][2] = quality;
         }
-        console.log(sortArr);
         return sortArr;
     }
 }
