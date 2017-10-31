@@ -31,7 +31,7 @@ class Population {
                 if(rand < sortArr[j][2]){
                     //Ant selected
                     antsNew[i] = new Ant(this.ants[sortArr[j][0]].dna);
-                    antsNew[i].reboot();
+//                    antsNew[i].reboot();
                     //Finish the for loop
                     j = 0;
                 }
@@ -54,7 +54,6 @@ class Population {
         for(var index in sortArr){
             sum += sortArr[index][1]; 
         }
-        console.log(sum);
         return sum;
     }
 

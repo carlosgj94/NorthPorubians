@@ -1,15 +1,17 @@
 class Ant{
     constructor(dna) {
-        this.pos = createVector(width/2, height);
+        this.id = random()*500;
+        this.pos = createVector(width/2, height-60);
         this.vel = createVector();
         this.acc = createVector();
         this.c = color("magenta");
         this.generation = 0;
 
+
         if(dna === undefined)
             this.dna = new DNA();
         else {
-            this.dna = dna;
+            this.dna = new DNA(dna.genes);
 
         }
         this.count = 0;
@@ -38,14 +40,16 @@ class Ant{
         rect(0, 0, 30, 10);
         pop();
     }
-    reboot(){
-        this.pos = createVector(width/2, height);
+
+    /*reboot(){
+        this.pos = createVector(width/2, height-60);
         this.vel = createVector();
         this.acc = createVector();
         this.count = 0;
         //Creating the Aria race
         this.c = color("#ebed48");
-    }
+    }*/
+
     mutate(){
         this.dna.mutate();
     }
