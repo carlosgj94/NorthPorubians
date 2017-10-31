@@ -25,29 +25,31 @@ class Population {
         sortArr = this._addTotalQuality(sortArr); //Adds the total quality of each ant
         var antsNew = []; //The future ants
 
-        //antsNew[antsPicked] = new Ant(this.ants[sortArr[i][0]].dna);
-        //antsNew[antsPicked].reboot();
-        
-        console.log(sortArr[0]);
-
         for(var i=0; i < this.popsize; i++){
             var rand = random();
-            console.log();
-            for(var j=this.popsize-1; j>=0; j--){
+            for(var j=this.popsize-1; j>=0; j--){ //From upside down since we want to start
                 if(rand < sortArr[j][2]){
                     //Ant selected
                     antsNew[i] = new Ant(this.ants[sortArr[j][0]].dna);
                     antsNew[i].reboot();
                     //Finish the for loop
-                    console.log(j);
                     j = 0;
                 }
             } 
         }
 
         this.ants = antsNew;
+        //MIXMIXMIXMIXMIX
         //Mix every two
-        //Mutate randomly
+        //MIXMIXMIX
+        //Mutate 
+        this.mutate();
+    }
+    
+    mutate(){
+        for(var i=0; i < this.popsize; i++){
+            this.ants[i].mutate();
+        }
     }
 
     _getQuality(sortArr) {

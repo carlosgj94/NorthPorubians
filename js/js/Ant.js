@@ -46,4 +46,7 @@ class Ant{
         //Creating the Aria race
         this.c = color("#ebed48");
     }
+    mutate(){
+        this.dna.mutate();
+    }
 }
