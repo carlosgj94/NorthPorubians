@@ -13,7 +13,6 @@ class DNA {
                 this.genes[i] = oldGenes[i];
             }
     }
-
     mutate(){
         for(var i=0;i<lifespan;i++){
             if(random() < this.mutProb){

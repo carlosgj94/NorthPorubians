@@ -4,7 +4,7 @@ class Ant{
         this.pos = createVector(width/2, height-60);
         this.vel = createVector();
         this.acc = createVector();
-        this.c = color("magenta");
+        this.c = color("#dd619f");
         this.generation = 0;
 
 
@@ -32,23 +32,14 @@ class Ant{
 
     show(){
         push();
-        translate(this.pos.x, this.pos.y);
-        rotate(this.vel.heading());
-        rectMode(CENTER);
-        fill(this.c);  // Use color variable 'c' as fill color
-        noStroke();  // Don't draw a stroke around shapes
-        rect(0, 0, 30, 10);
+        translate(this.pos.x, this.pos.y); //Move the ant to its new pos
+        rotate(this.vel.heading()+PI/2); //Orientate the ant to its moving vector
+        //Set the point of rotation to its center
+        stroke(this.c);
+        fill(221, 97, 159, 150);
+        triangle(-15/2, 0, 15/2, 0, 0, -20);
         pop();
     }
-
-    /*reboot(){
-        this.pos = createVector(width/2, height-60);
-        this.vel = createVector();
-        this.acc = createVector();
-        this.count = 0;
-        //Creating the Aria race
-        this.c = color("#ebed48");
-    }*/
 
     mutate(){
         this.dna.mutate();

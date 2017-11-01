@@ -25,13 +25,13 @@ function setup() {
 
 function draw() {
     if (Isdraw) {
-        background('rgba(0,0,0,0.1)');
+        background('#fff0f2');
         //console.log(population.count);
         if (population.count == lifespan) 
             population.reboot();
 
         population.run();
-        var c = color("red");  // Define color 'c'
+        var c = color("#11bf8c");  // Define color 'c'
         fill(c);  // Use color variable 'c' as fill color
         noStroke();
         ellipse(finalX, finalY, 30, 30);
