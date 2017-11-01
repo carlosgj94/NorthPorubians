@@ -1,11 +1,11 @@
 class Ant{
     constructor(dna) {
-        this.id = random()*500;
         this.pos = createVector(width/2, height-60);
         this.vel = createVector();
         this.acc = createVector();
         this.c = color("#dd619f");
         this.generation = 0;
+        this.gotTheFood = false;
 
 
         if(dna === undefined)
@@ -25,9 +25,16 @@ class Ant{
         this.applyForce(this.dna.genes[this.count]);
         this.count++;
 
-        this.vel.add(this.acc);
-        this.pos.add(this.vel);
-        this.acc = createVector(0,0);
+        if(!this.gotTheFood){
+            this.vel.add(this.acc);
+            this.pos.add(this.vel);
+            this.acc = createVector(0,0);
+        }
+        if( dist(this.pos.x, this.pos.y, finalX, finalY) < 10){
+            this.gotTheFood = true;
+            //this.pos.x = finalX;
+            //this.pos.y = finalY;
+        }
     }
 
     show(){
@@ -43,5 +50,9 @@ class Ant{
 
     mutate(){
         this.dna.mutate();
+    }
+
+    procreate(ant){
+        this.dna.mix(ant.dna);
     }
 }

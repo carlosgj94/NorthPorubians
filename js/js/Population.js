@@ -6,6 +6,7 @@ class Population {
         this.winners = [];
         this.popProb = 0.7; //Probability to survive
         this.popSurvive = 0.5; //Per cent of ants that survive 
+        this.matchingProb = 0.001;
 
         for(var i=0; i < this.popsize; i++){
             this.ants[i]  = new Ant();
@@ -31,7 +32,6 @@ class Population {
                 if(rand < sortArr[j][2]){
                     //Ant selected
                     antsNew[i] = new Ant(this.ants[sortArr[j][0]].dna);
-//                    antsNew[i].reboot();
                     //Finish the for loop
                     j = 0;
                 }
@@ -39,13 +39,25 @@ class Population {
         }
 
         this.ants = antsNew;
-        //Mix every two
+        this.matching();
         this.mutate();
     }
     
     mutate(){
         for(var i=0; i < this.popsize; i++){
             this.ants[i].mutate();
+        }
+    }
+
+    matching(){
+        for(var i=0;i<this.popsize/2;i++){
+            var rand = random();
+            if(rand < this.matchingProb){
+            //Pick an ant
+                var father = random(this.ants);
+                var mother = random(this.ants);
+                mother.procreate(father);
+            }
         }
     }
 

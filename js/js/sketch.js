@@ -1,5 +1,5 @@
 var population;
-var lifespan =  100;
+var lifespan =  400;
 var finalX;
 var finalY;
 var Isdraw = true;
@@ -34,6 +34,6 @@ function draw() {
         var c = color("#11bf8c");  // Define color 'c'
         fill(c);  // Use color variable 'c' as fill color
         noStroke();
-        ellipse(finalX, finalY, 30, 30);
+        ellipse(finalX, finalY, 20, 20);
     }
 }
