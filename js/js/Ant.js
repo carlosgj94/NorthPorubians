@@ -5,7 +5,8 @@ class Ant{
         this.acc = createVector();
         this.c = color("#dd619f");
         this.generation = 0;
-        this.gotTheFood = false;
+        this.gotTheFood = false; //Arrived to the end
+        this.dead = false; //Got crashed
 
 
         if(dna === undefined)
@@ -25,15 +26,20 @@ class Ant{
         this.applyForce(this.dna.genes[this.count]);
         this.count++;
 
-        if(!this.gotTheFood){
+        if(!this.gotTheFood && !this.dead){
             this.vel.add(this.acc);
             this.pos.add(this.vel);
             this.acc = createVector(0,0);
         }
         if( dist(this.pos.x, this.pos.y, finalX, finalY) < 10){
             this.gotTheFood = true;
-            //this.pos.x = finalX;
-            //this.pos.y = finalY;
+        }
+        else if(this.pos.x > wallX && this.pos.x < wallX+wallWidth && 
+                this.pos.y > wallY && this.pos.y < wallY+wallHeight){
+            this.dead = true;
+        }
+        else if(this.pos.x < 10 || this.pos.x > width-15 || this.pos.y > height-15 || this.pos.y < 15){
+            this.dead = true;
         }
     }
 

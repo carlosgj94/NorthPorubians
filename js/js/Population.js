@@ -6,7 +6,9 @@ class Population {
         this.winners = [];
         this.popProb = 0.7; //Probability to survive
         this.popSurvive = 0.5; //Per cent of ants that survive 
-        this.matchingProb = 0.001;
+        this.matchingProb = 0.15;
+
+        this.penalty = 0.5;
 
         for(var i=0; i < this.popsize; i++){
             this.ants[i]  = new Ant();
@@ -64,7 +66,8 @@ class Population {
     _getQuality(sortArr) {
         var sum = 0;
         for(var index in sortArr){
-            sum += sortArr[index][1]; 
+            if(this.ants[sortArr[index][0]].dead)
+            sum += (sortArr[index][1]*this.penalty); 
         }
         return sum;
     }
@@ -73,6 +76,7 @@ class Population {
         var sorteable = [];
         for(var ant in this.ants){
             var distP = dist(this.ants[ant].pos.x, this.ants[ant].pos.y, finalX, finalY);
+            if(this.ants[ant].dead) distP *=this.penalty;//Do I want to make them worst if they crash?
             sorteable.push([ant, 1/distP]);
         }
         return sorteable.sort(function (a, b){
