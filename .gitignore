@@ -55,3 +55,5 @@ browserconfig.xml
 doc/*
 css/*
 img/*
+.tern-port
+.DS_Store
