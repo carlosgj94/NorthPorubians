@@ -31,7 +31,7 @@ class Ant{
             this.pos.add(this.vel);
             this.acc = createVector(0,0);
         }
-        if( dist(this.pos.x, this.pos.y, finalX, finalY) < 10){
+        if( dist(this.pos.x, this.pos.y, finalX, finalY) < 20){
             this.gotTheFood = true;
         }
         else if(this.pos.x > wallX && this.pos.x < wallX+wallWidth && 
