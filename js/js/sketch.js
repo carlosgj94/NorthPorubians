@@ -1,10 +1,10 @@
 var population;
-var lifespan =  350;
+var lifespan =  150;
 var finalX;
 var finalY;
 var Isdraw = true;
 
-var wallX = 400;
+var wallX = 450;
 var wallY;
 var wallWidth; 
 var wallHeight = 15;
@@ -24,8 +24,8 @@ function setup() {
     finalX = width / 2;
     finalY = 150;
 
-    wallWidth = (width/2) - 200;
-    wallY = (height/2) + 200;
+    wallWidth = (width/2) - 300;
+    wallY = (height/2) + 150;
 
     population = new Population();
 }
