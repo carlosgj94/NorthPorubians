@@ -4,11 +4,10 @@ class Population {
         this.popsize = 100;
         this.count;
         this.winners = [];
-        this.popProb = 0.7; //Probability to survive
-        this.popSurvive = 0.3; //Per cent of ants that survive 
         this.matchingProb = 0.15;
 
-        this.penalty = 0.5;
+        this.penalty = 0.1;
+        this.prize = 3;
 
         for(var i=0; i < this.popsize; i++){
             this.ants[i]  = new Ant();
@@ -69,10 +68,11 @@ class Population {
             if(this.ants[sortArr[index][0]].dead)
                 sum += (sortArr[index][1]*this.penalty); 
             else if(this.ants[sortArr[index][0]].gotTheFood)
-                sum += (sortArr[index][1]*(2-(this.penalty/2))); 
+                sum += (sortArr[index][1]*this.prize); 
             else
                 sum += sortArr[index][1]
         }
+        console.log(sum);
         return sum;
     }
 
@@ -80,8 +80,9 @@ class Population {
         var sorteable = [];
         for(var ant in this.ants){
             var distP = dist(this.ants[ant].pos.x, this.ants[ant].pos.y, finalX, finalY);
-            if(this.ants[ant].dead) distP *=this.penalty;//Do I want to make them worst if they crash?
-            else if(this.ants[ant].gotTheFood) distP *=(2-(this.penalty/2));//Do I want to make them worst if they crash?
+            if(this.ants[ant].dead) distP *=this.penalty;
+            //Do I want to make//Do I want to make them worst if they crash? them worst if they crash?
+            else if(this.ants[ant].gotTheFood) distP *= this.prize;
             sorteable.push([ant, 1/distP]);
         }
         return sorteable.sort(function (a, b){

@@ -1,7 +1,7 @@
 class DNA {
     constructor(oldGenes){
         this.genes = [];
-        this.mutProb = 0.15;
+        this.mutProb = 0.109;
         this.magnitude = 1;//This will be the speed
         if(oldGenes === undefined)
             for(var i =0; i < lifespan; i++){
