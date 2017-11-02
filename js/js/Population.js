@@ -1,13 +1,13 @@
 class Population {
     constructor(){
         this.ants = [];
-        this.popsize = 100;
+        this.popsize = 1000;
         this.count;
         this.winners = [];
         this.matchingProb = 0.15;
 
-        this.penalty = 0.1;
-        this.prize = 3;
+        this.penalty = 0.05;
+        this.prize = 5;
 
         for(var i=0; i < this.popsize; i++){
             this.ants[i]  = new Ant();

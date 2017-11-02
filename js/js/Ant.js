@@ -34,10 +34,12 @@ class Ant{
         if( dist(this.pos.x, this.pos.y, finalX, finalY) < 90){
             this.gotTheFood = true;
         }
-        else if(this.pos.x > wallX && this.pos.x < wallX+wallWidth && 
-                this.pos.y > wallY && this.pos.y < wallY+wallHeight){
-            this.dead = true;
-        }
+        else
+            for(var i = 0;i<walls.length;i++)
+                if(this.pos.x > walls[i].x && this.pos.x < walls[i].x+walls[i].width && 
+                    this.pos.y > walls[i].y && this.pos.y < walls[i].y+walls[i].height){
+                    this.dead = true;
+                }
         else if(this.pos.x < 10 || this.pos.x > width-15 || this.pos.y > height-15 || this.pos.y < 15){
             this.dead = true;
         }

@@ -1,13 +1,9 @@
 var population;
+var walls= [];
 var lifespan =  150;
 var finalX;
 var finalY;
 var Isdraw = true;
-
-var wallX = 450;
-var wallY;
-var wallWidth; 
-var wallHeight = 15;
 
 function setup() {
     var width = window.innerWidth
@@ -28,6 +24,9 @@ function setup() {
     wallY = (height/2) + 150;
 
     population = new Population();
+
+    for(var i=0;i<10;i++)
+        walls[i] = new Wall();
 }
 
 function draw() {
@@ -42,6 +41,9 @@ function draw() {
         fill(c);  // Use color variable 'c' as fill color
         noStroke();
         ellipse(finalX, finalY, 90, 90);
-        rect(wallX, wallY, wallWidth, wallHeight);
+
+        //Wall drawing
+        for(var i=0;i<walls.length;i++)
+            walls[i].draw();
     }
 }
