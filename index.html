@@ -1,15 +1,55 @@
 <!doctype html>
 <html class="" lang="">
     <head></head>
-    <body style="background-color:#fff0f2">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+    <body  style="background-color:#fff0f2" >
+        <div class="sidebar">
+            <h4>AntManager 2000</h4>
+            <br>
+            <h5 id="fitness">Fitness: 0</h5>
+            <br>
+            <div class="input-field col s6">
+                <input id="mutation" type="text">
+                <label for="mutation">Mutation:</label>
+            </div>
+            <div class="input-field col s6">
+                <input id="matching" type="text">
+                <label for="matching">Matching:</label>
+            </div>
+<div class="input-field col s6">
+                <input id="penalty" type="text">
+                <label for="penalty">Penalty:</label>
+            </div>
+<div class="input-field col s6">
+                <input id="winning-prize" type="text">
+                <label for="winning-prize">Winning prize:</label>
+            </div>
 
+            <button class="waves-effect waves-light btn" onclick="uiApplyValues()"> Apply </button>
+            <button class="waves-effect waves-light btn" onclick="uiRegenerate()"> Regenerate </button>
+        </div>
+        <canvas class='canvas'></canvas>
+
+        <!--Libraries-->
         <script src="js/p5.min.js"></script>
 
+        <!--UI-->
+        <script src="js/ui.js"></script>
+
+        <!--Game-->
         <script src="js/js/Wall.js"></script>
         <script src="js/js/DNA.js"></script>
         <script src="js/js/Population.js"></script>
         <script src="js/js/Ant.js"></script>
         <script src="js/js/sketch.js"></script>
+
+        <script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
     </body>
 </html>

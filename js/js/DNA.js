@@ -1,8 +1,8 @@
 class DNA {
     constructor(oldGenes){
         this.genes = [];
-        this.mutProb = 0.013;
-        this.magnitude = 1;//This will be the speed
+        this.mutProb = mutProb;
+        this.magnitude = 0.9;//This will be the speed
         if(oldGenes === undefined)
             for(var i =0; i < lifespan; i++){
                 this.genes[i] = p5.Vector.random2D();

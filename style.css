@@ -1,0 +1,22 @@
+body{
+    font-family: 'Inconsolata', monospace;
+    font-size: 22px;
+    color: #cd4679;
+    width:100%;
+}
+
+.sidebar {
+    position: absolute;  
+    width:300px;
+    height: 100vh;
+    background-color: #efe0e2;
+    padding: 10px 10px 10px 10px;
+}
+
+.canvas{
+    top: 0; left: 0; bottom: 100%; right: 100%;
+}
+
+h4{
+    color: #dd619f;
+}

@@ -1,9 +1,9 @@
 class Wall {
     constructor(){
         this.x = random(width);
-        this.y = random(height);
+        this.y = random(200, height-150);
         this.width = 200; 
-        this.height= 20;
+        this.height= 25;
         this.c = color("#11bf8c");
     }
 

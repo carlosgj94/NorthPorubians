@@ -1,16 +1,19 @@
 class Population {
-    constructor(){
+    constructor(colorF){
         this.ants = [];
-        this.popsize = 1000;
-        this.count;
+        this.popsize = 100;
+        this.count; //Current life time
         this.winners = [];
         this.matchingProb = 0.15;
+        this.color = colorF;
 
-        this.penalty = 0.05;
+        this.penalty = 0.1;
         this.prize = 5;
 
+        this.fitness; //The quality of the current generation
+
         for(var i=0; i < this.popsize; i++){
-            this.ants[i]  = new Ant();
+            this.ants[i]  = new Ant(undefined, this.color);
         }
     }
 
@@ -32,7 +35,7 @@ class Population {
             for(var j=this.popsize-1; j>=0; j--){ //From upside down since we want to start
                 if(rand < sortArr[j][2]){
                     //Ant selected
-                    antsNew[i] = new Ant(this.ants[sortArr[j][0]].dna);
+                    antsNew[i] = new Ant(this.ants[sortArr[j][0]].dna, this.color);
                     //Finish the for loop
                     j = 0;
                 }
@@ -73,6 +76,8 @@ class Population {
                 sum += sortArr[index][1]
         }
         console.log(sum);
+        this.fitness = sum;
+        uiGetFitness(this.fitness);
         return sum;
     }
 
